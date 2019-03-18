@@ -1,13 +1,13 @@
 <?php
 /**
- * Gutenbergtheme functions and definitions
+ * gutenbergthemedark functions and definitions
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package Gutenbergtheme
+ * @package gutenbergthemedark
  */
 
-if ( ! function_exists( 'gutenbergtheme_setup' ) ) :
+if ( ! function_exists( 'gutenbergthemedark_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
@@ -15,14 +15,14 @@ if ( ! function_exists( 'gutenbergtheme_setup' ) ) :
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
-	function gutenbergtheme_setup() {
+	function gutenbergthemedark_setup() {
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
-		 * If you're building a theme based on gutenbergtheme, use a find and replace
-		 * to change 'gutenbergtheme' to the name of your theme in all the template files.
+		 * If you're building a theme based on gutenbergthemedark, use a find and replace
+		 * to change 'gutenbergthemedark' to the name of your theme in all the template files.
 		 */
-		load_theme_textdomain( 'gutenbergtheme', get_template_directory() . '/languages' );
+		load_theme_textdomain( 'gutenbergthemedark', get_template_directory() . '/languages' );
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
@@ -44,7 +44,7 @@ if ( ! function_exists( 'gutenbergtheme_setup' ) ) :
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
-			'menu-1' => esc_html__( 'Primary', 'gutenbergtheme' ),
+			'menu-1' => esc_html__( 'Primary', 'gutenbergthemedark' ),
 		) );
 
 		/*
@@ -89,30 +89,39 @@ if ( ! function_exists( 'gutenbergtheme_setup' ) ) :
 		// Add support for custom color scheme.
 		add_theme_support( 'editor-color-palette', array(
 			array(
-				'name'  => 'strong blue',
+				'name'  => __( 'Strong Blue', 'gutenbergthemedark' ),
 				'slug'  => 'strong-blue',
 				'color' => '#0073aa',
 			),
 			array(
-				'name'  => 'lighter blue',
+				'name'  => __( 'Lighter Blue', 'gutenbergthemedark' ),
 				'slug'  => 'lighter-blue',
 				'color' => '#229fd8',
 			),
 			array(
-				'name'  => 'very light gray',
+				'name'  => __( 'Very Light Gray', 'gutenbergthemedark' ),
 				'slug'  => 'very-light-gray',
 				'color' => '#eee',
 			),
 			array(
-				'name'  => 'very dark gray',
+				'name'  => __( 'Very Dark Gray', 'gutenbergthemedark' ),
 				'slug'  => 'very-dark-gray',
 				'color' => '#444',
-			)
+			),
 		) );
 
+		// Add support for responsive embeds.
+		add_theme_support( 'responsive-embeds' );
+
+		// Add support for editor styles.
+		add_theme_support( 'editor-styles' );
+		add_editor_style( 'style-editor.css' );
+
+		// Add support for dark styles.
+		add_theme_support( 'dark-editor-style' );
 	}
 endif;
-add_action( 'after_setup_theme', 'gutenbergtheme_setup' );
+add_action( 'after_setup_theme', 'gutenbergthemedark_setup' );
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -121,15 +130,15 @@ add_action( 'after_setup_theme', 'gutenbergtheme_setup' );
  *
  * @global int $content_width
  */
-function gutenbergtheme_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'gutenbergtheme_content_width', 640 );
+function gutenbergthemedark_content_width() {
+	$GLOBALS['content_width'] = apply_filters( 'gutenbergthemedark_content_width', 640 );
 }
-add_action( 'after_setup_theme', 'gutenbergtheme_content_width', 0 );
+add_action( 'after_setup_theme', 'gutenbergthemedark_content_width', 0 );
 
 /**
  * Register Google Fonts
  */
-function gutenbergtheme_fonts_url() {
+function gutenbergthemedark_fonts_url() {
 	$fonts_url = '';
 
 	/*
@@ -137,7 +146,7 @@ function gutenbergtheme_fonts_url() {
 	 * supported by Noto Serif, translate this to 'off'. Do not translate
 	 * into your own language.
 	 */
-	$notoserif = esc_html_x( 'on', 'Noto Serif font: on or off', 'gutenbergtheme' );
+	$notoserif = esc_html_x( 'on', 'Noto Serif font: on or off', 'gutenbergthemedark' );
 
 	if ( 'off' !== $notoserif ) {
 		$font_families = array();
@@ -158,22 +167,22 @@ function gutenbergtheme_fonts_url() {
 /**
  * Enqueue scripts and styles.
  */
-function gutenbergtheme_scripts() {
+function gutenbergthemedark_scripts() {
 	wp_enqueue_style( 'gutenbergbase-style', get_stylesheet_uri() );
 
-	wp_enqueue_style( 'gutenbergthemeblocks-style', get_template_directory_uri() . '/css/blocks.css' );
+	wp_enqueue_style( 'gutenbergthemedarkblocks-style', get_template_directory_uri() . '/css/blocks.css' );
 
-	wp_enqueue_style( 'gutenbergtheme-fonts', gutenbergtheme_fonts_url() );
+	wp_enqueue_style( 'gutenbergthemedark-fonts', gutenbergthemedark_fonts_url() );
 
-	wp_enqueue_script( 'gutenbergtheme-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
+	wp_enqueue_script( 'gutenbergthemedark-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
-	wp_enqueue_script( 'gutenbergtheme-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
+	wp_enqueue_script( 'gutenbergthemedark-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
-add_action( 'wp_enqueue_scripts', 'gutenbergtheme_scripts' );
+add_action( 'wp_enqueue_scripts', 'gutenbergthemedark_scripts' );
 
 /**
  * Implement the Custom Header feature.

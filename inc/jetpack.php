@@ -4,7 +4,7 @@
  *
  * @link https://jetpack.com/
  *
- * @package Gutenbergtheme
+ * @package gutenbergthemedark
  */
 
 /**
@@ -14,11 +14,11 @@
  * See: https://jetpack.com/support/responsive-videos/
  * See: https://jetpack.com/support/content-options/
  */
-function gutenbergtheme_jetpack_setup() {
+function gutenbergthemedark_jetpack_setup() {
 	// Add theme support for Infinite Scroll.
 	add_theme_support( 'infinite-scroll', array(
 		'container' => 'main',
-		'render'    => 'gutenbergtheme_infinite_scroll_render',
+		'render'    => 'gutenbergthemedark_infinite_scroll_render',
 		'footer'    => 'page',
 	) );
 
@@ -28,7 +28,7 @@ function gutenbergtheme_jetpack_setup() {
 	// Add theme support for Content Options.
 	add_theme_support( 'jetpack-content-options', array(
 		'post-details' => array(
-			'stylesheet' => 'gutenbergtheme-style',
+			'stylesheet' => 'gutenbergthemedark-style',
 			'date'       => '.posted-on',
 			'categories' => '.cat-links',
 			'tags'       => '.tags-links',
@@ -37,12 +37,12 @@ function gutenbergtheme_jetpack_setup() {
 		),
 	) );
 }
-add_action( 'after_setup_theme', 'gutenbergtheme_jetpack_setup' );
+add_action( 'after_setup_theme', 'gutenbergthemedark_jetpack_setup' );
 
 /**
  * Custom render function for Infinite Scroll.
  */
-function gutenbergtheme_infinite_scroll_render() {
+function gutenbergthemedark_infinite_scroll_render() {
 	while ( have_posts() ) {
 		the_post();
 		if ( is_search() ) :
